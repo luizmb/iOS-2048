@@ -16,13 +16,6 @@
 @implementation F3HViewController
 
 - (IBAction)playGameButtonTapped:(id)sender {
-    F3HNumberTileGameViewController *c = [F3HNumberTileGameViewController numberTileGameWithDimension:4
-                                                                                         winThreshold:2048
-                                                                                      backgroundColor:[UIColor whiteColor]
-                                                                                          scoreModule:YES
-                                                                                       buttonControls:NO
-                                                                                        swipeControls:YES];
-    [self presentViewController:c animated:YES completion:nil];
 }
 
 @end
