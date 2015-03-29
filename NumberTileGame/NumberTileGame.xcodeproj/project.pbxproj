@@ -47,7 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A3487AD18DEAD6E00D021C3 /* NumberTileGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NumberTileGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A3487AD18DEAD6E00D021C3 /* 2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A3487B018DEAD6E00D021C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1A3487B218DEAD6E00D021C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1A3487B418DEAD6E00D021C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -130,7 +130,7 @@
 		1A3487AE18DEAD6E00D021C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A3487AD18DEAD6E00D021C3 /* NumberTileGame.app */,
+				1A3487AD18DEAD6E00D021C3 /* 2048.app */,
 				1A3487D118DEAD6E00D021C3 /* NumberTileGameTests.xctest */,
 			);
 			name = Products;
@@ -247,7 +247,7 @@
 			);
 			name = NumberTileGame;
 			productName = NumberTileGame;
-			productReference = 1A3487AD18DEAD6E00D021C3 /* NumberTileGame.app */;
+			productReference = 1A3487AD18DEAD6E00D021C3 /* 2048.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1A3487D018DEAD6E00D021C3 /* NumberTileGameTests */ = {
@@ -278,7 +278,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1A3487AC18DEAD6E00D021C3 = {
-						DevelopmentTeam = GYV39WAN3G;
+						DevelopmentTeam = 7BK8NL3DYL;
 					};
 					1A3487D018DEAD6E00D021C3 = {
 						TestTargetID = 1A3487AC18DEAD6E00D021C3;
@@ -477,7 +477,7 @@
 				GCC_PREFIX_HEADER = "NumberTileGame/NumberTileGame-Prefix.pch";
 				INFOPLIST_FILE = "NumberTileGame/NumberTileGame-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = 2048;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -494,7 +494,7 @@
 				GCC_PREFIX_HEADER = "NumberTileGame/NumberTileGame-Prefix.pch";
 				INFOPLIST_FILE = "NumberTileGame/NumberTileGame-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = 2048;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
