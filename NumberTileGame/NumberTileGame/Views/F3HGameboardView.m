@@ -14,7 +14,7 @@
 
 #define PER_SQUARE_SLIDE_DURATION 0.13
 
-#if DEBUG
+#if DEBUG && FALSE
 #define F3HLOG(...) NSLog(__VA_ARGS__)
 #else
 #define F3HLOG(...)

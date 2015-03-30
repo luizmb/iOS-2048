@@ -12,10 +12,11 @@
 #import "F3HControlView.h"
 #import "F3HScoreView.h"
 #import "F3HGameModel.h"
+#import "DVCRepository.h"
 
 #define ELEMENT_SPACING 10
 
-@interface F3HNumberTileGameViewController () <F3HGameModelProtocol, F3HControlViewProtocol>
+@interface F3HNumberTileGameViewController () <F3HGameModelDelegateProtocol, F3HControlViewProtocol>
 
 @property (nonatomic, strong) F3HGameboardView *gameboard;
 @property (nonatomic, strong) F3HGameModel *model;
@@ -27,6 +28,7 @@
 
 @property (nonatomic) NSUInteger dimension;
 @property (nonatomic) NSUInteger threshold;
+@property (nonatomic, strong) id<F3HGameModelDelegateProtocol> persistenceService;
 @end
 
 @implementation F3HNumberTileGameViewController
@@ -46,6 +48,7 @@
     if (swipeControlsEnabled) {
         [c setupSwipeControls];
     }
+    c.persistenceService = [[DVCRepository alloc] init];
     return c;
 }
 
@@ -169,7 +172,7 @@
 
 - (void)nextTurn {
     if (![self.model gameOver]) {
-        NSInteger rand = arc4random_uniform(10);
+        NSInteger rand = arc4random_uniform(4);
         if (rand == 1) {
             [self.model insertAtRandomLocationTileWithValue:4];
         }
@@ -195,21 +198,25 @@
 
 #pragma mark - Model Protocol
 
-- (void)moveTileFromIndexPath:(NSIndexPath *)fromPath toIndexPath:(NSIndexPath *)toPath newValue:(NSUInteger)value {
+- (void)gameWithModel:(id<F3HGameModelProtocol>)gameModel didMoveTileFromIndexPath:(NSIndexPath *)fromPath toIndexPath:(NSIndexPath *)toPath newValue:(NSUInteger)value {
     [self.gameboard moveTileAtIndexPath:fromPath toIndexPath:toPath withValue:value];
+    [self.persistenceService gameWithModel:gameModel didMoveTileFromIndexPath:fromPath toIndexPath:toPath newValue:value];
 }
 
-- (void)moveTileOne:(NSIndexPath *)startA tileTwo:(NSIndexPath *)startB toIndexPath:(NSIndexPath *)end newValue:(NSUInteger)value {
+- (void)gameWithModel:(id<F3HGameModelProtocol>)gameModel didMoveTileOne:(NSIndexPath *)startA tileTwo:(NSIndexPath *)startB toIndexPath:(NSIndexPath *)end newValue:(NSUInteger)value {
     [self.gameboard moveTileOne:startA tileTwo:startB toIndexPath:end withValue:value];
+    [self.persistenceService gameWithModel:gameModel didMoveTileOne:startA tileTwo:startB toIndexPath:end newValue:value];
 }
 
-- (void)insertTileAtIndexPath:(NSIndexPath *)path value:(NSUInteger)value {
+- (void) gameWithModel:(id<F3HGameModelProtocol>)gameModel didInsertTileAtIndexPath:(NSIndexPath *)path value:(NSUInteger)value {
     [self.gameboard insertTileAtIndexPath:path withValue:value];
+    [self.persistenceService gameWithModel:gameModel didInsertTileAtIndexPath:path value:value];
     [self checkGameOver];
 }
 
-- (void)scoreChanged:(NSInteger)newScore {
+- (void) gameWithModel:(id<F3HGameModelProtocol>)gameModel didChangeTheScoreTo:(NSInteger)newScore {
     self.scoreView.score = newScore;
+    [self.persistenceService gameWithModel:gameModel didChangeTheScoreTo:newScore];
 }
 
 
@@ -246,8 +253,8 @@
 -(void)newGame {
     [self.gameboard reset];
     [self.model reset];
-    [self.model insertAtRandomLocationTileWithValue:2];
-    [self.model insertAtRandomLocationTileWithValue:2];
+    [self nextTurn];
+    [self nextTurn];
 }
 
 - (void)exitButtonTapped {

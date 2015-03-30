@@ -41,14 +41,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NumberTileGame/Models/F3HGameModel.m"
-            timestampString = "449362001.632026"
+            filePath = "NumberTileGame/F3HNumberTileGameViewController.m"
+            timestampString = "449381372.121245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
-            landmarkName = "-gameOver"
-            landmarkType = "5">
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "@implementation F3HNumberTileGameViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

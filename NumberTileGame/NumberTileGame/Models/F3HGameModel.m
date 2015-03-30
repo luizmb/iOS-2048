@@ -19,12 +19,7 @@
 
 @interface F3HGameModel ()
 
-@property (nonatomic, weak) id<F3HGameModelProtocol> delegate;
-
-@property (nonatomic, strong) NSMutableArray *gameState;
-
-@property (nonatomic) NSUInteger dimension;
-@property (nonatomic) NSUInteger winValue;
+@property (nonatomic, weak) id<F3HGameModelDelegateProtocol> delegate;
 
 @property (nonatomic, strong) NSMutableArray *commandQueue;
 @property (nonatomic, strong) NSTimer *queueTimer;
@@ -37,7 +32,7 @@
 
 + (instancetype)gameModelWithDimension:(NSUInteger)dimension
                               winValue:(NSUInteger)value
-                              delegate:(id<F3HGameModelProtocol>)delegate {
+                              delegate:(id<F3HGameModelDelegateProtocol>)delegate {
     F3HGameModel *model = [F3HGameModel new];
     model.dimension = dimension;
     model.winValue = value;
@@ -92,7 +87,8 @@
     tile.empty = NO;
     tile.value = value;
     self.score += value;
-    [self.delegate insertTileAtIndexPath:path value:value];
+    __weak id<F3HGameModelProtocol> weakSelf = self;
+    [self.delegate gameWithModel:weakSelf didInsertTileAtIndexPath:path value:value];
 }
 
 
@@ -133,10 +129,12 @@
                     destinationTile.value = order.value;
                     
                     // Update delegate
-                    [self.delegate moveTileOne:source1Path
-                                       tileTwo:source2Path
-                                   toIndexPath:destinationPath
-                                      newValue:order.value];
+                    __weak id<F3HGameModelProtocol> weakSelf = self;
+                    [self.delegate gameWithModel: weakSelf
+                                  didMoveTileOne:source1Path
+                                         tileTwo:source2Path
+                                     toIndexPath:destinationPath
+                                        newValue:order.value];
                 }
                 else {
                     // Update internal model
@@ -150,9 +148,11 @@
                     destinationTile.value = order.value;
                     
                     // Update delegate
-                    [self.delegate moveTileFromIndexPath:sourcePath
-                                             toIndexPath:destinationPath
-                                                newValue:order.value];
+                    __weak id<F3HGameModelProtocol> weakSelf = self;
+                    [self.delegate gameWithModel:weakSelf
+                        didMoveTileFromIndexPath:sourcePath
+                                     toIndexPath:destinationPath
+                                        newValue:order.value];
                 }
             }
         }
@@ -190,10 +190,12 @@
                     destinationTile.value = order.value;
                     
                     // Update delegate
-                    [self.delegate moveTileOne:source1Path
-                                       tileTwo:source2Path
-                                   toIndexPath:destinationPath
-                                      newValue:order.value];
+                    __weak id<F3HGameModelProtocol> weakSelf = self;
+                    [self.delegate gameWithModel:weakSelf
+                                  didMoveTileOne:source1Path
+                                         tileTwo:source2Path
+                                     toIndexPath:destinationPath
+                                        newValue:order.value];
                 }
                 else {
                     // Update internal model
@@ -207,9 +209,11 @@
                     destinationTile.value = order.value;
                     
                     // Update delegate
-                    [self.delegate moveTileFromIndexPath:sourcePath
-                                             toIndexPath:destinationPath
-                                                newValue:order.value];
+                    __weak id<F3HGameModelProtocol> weakSelf = self;
+                    [self.delegate gameWithModel:weakSelf
+                        didMoveTileFromIndexPath:sourcePath
+                                     toIndexPath:destinationPath
+                                        newValue:order.value];
                 }
             }
         }
@@ -247,10 +251,12 @@
                     destinationTile.value = order.value;
                     
                     // Update delegate
-                    [self.delegate moveTileOne:source1Path
-                                       tileTwo:source2Path
-                                   toIndexPath:destinationPath
-                                      newValue:order.value];
+                    __weak id<F3HGameModelProtocol> weakSelf = self;
+                    [self.delegate gameWithModel:weakSelf
+                                  didMoveTileOne:source1Path
+                                         tileTwo:source2Path
+                                     toIndexPath:destinationPath
+                                        newValue:order.value];
                 }
                 else {
                     // One tile moves, either to an empty spot or to merge with another tile.
@@ -265,9 +271,11 @@
                     destinationTile.value = order.value;
                     
                     // Update delegate
-                    [self.delegate moveTileFromIndexPath:sourcePath
-                                             toIndexPath:destinationPath
-                                                newValue:order.value];
+                    __weak id<F3HGameModelProtocol> weakSelf = self;
+                    [self.delegate gameWithModel:weakSelf
+                        didMoveTileFromIndexPath:sourcePath
+                                     toIndexPath:destinationPath
+                                        newValue:order.value];
                 }
             }
         }
@@ -305,10 +313,12 @@
                     destinationTile.value = order.value;
                     
                     // Update delegate
-                    [self.delegate moveTileOne:source1Path
-                                       tileTwo:source2Path
-                                   toIndexPath:destinationPath
-                                      newValue:order.value];
+                    __weak id<F3HGameModelProtocol> weakSelf = self;
+                    [self.delegate gameWithModel:weakSelf
+                                  didMoveTileOne:source1Path
+                                         tileTwo:source2Path
+                                     toIndexPath:destinationPath
+                                        newValue:order.value];
                 }
                 else {
                     // Update internal model
@@ -322,9 +332,11 @@
                     destinationTile.value = order.value;
                     
                     // Update delegate
-                    [self.delegate moveTileFromIndexPath:sourcePath
-                                             toIndexPath:destinationPath
-                                                newValue:order.value];
+                    __weak id<F3HGameModelProtocol> weakSelf = self;
+                    [self.delegate gameWithModel:weakSelf
+                        didMoveTileFromIndexPath:sourcePath
+                                     toIndexPath:destinationPath
+                                        newValue:order.value];
                 }
             }
         }
@@ -456,7 +468,8 @@
 
 - (void)setScore:(NSInteger)score {
     _score = score;
-    [self.delegate scoreChanged:score];
+    __weak id<F3HGameModelProtocol> weakSelf = self;
+    [self.delegate gameWithModel:weakSelf didChangeTheScoreTo:score];
 }
 
 // Merge some items to the left

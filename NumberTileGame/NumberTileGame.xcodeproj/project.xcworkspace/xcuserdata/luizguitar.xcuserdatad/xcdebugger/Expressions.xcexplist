@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[DVCRepository init]:DVCRepository.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.currentBoard[3]">
+            </PersistentString>
+            <PersistentString
+               value = "self.currentBoard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[F3HGameModel gameOver]:F3HGameModel.m">
          <PersistentStrings>
             <PersistentString

@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "F3HGameModelProtocol.h"
+#import "F3HGameModelDelegateProtocol.h"
 
 typedef enum {
     F3HMoveDirectionUp = 0,
@@ -15,29 +17,17 @@ typedef enum {
     F3HMoveDirectionRight
 } F3HMoveDirection;
 
-@protocol F3HGameModelProtocol
-
-- (void)scoreChanged:(NSInteger)newScore;
-
-- (void)moveTileFromIndexPath:(NSIndexPath *)fromPath
-                  toIndexPath:(NSIndexPath *)toPath
-                     newValue:(NSUInteger)value;
-- (void)moveTileOne:(NSIndexPath *)startA
-            tileTwo:(NSIndexPath *)startB
-        toIndexPath:(NSIndexPath *)end
-           newValue:(NSUInteger)value;
-- (void)insertTileAtIndexPath:(NSIndexPath *)path
-                        value:(NSUInteger)value;
-
-@end
-
-@interface F3HGameModel : NSObject
+@interface F3HGameModel : NSObject<F3HGameModelProtocol>
 
 @property (nonatomic, readonly) NSInteger score;
+@property (nonatomic, strong) NSMutableArray *gameState;
+@property (nonatomic) NSUInteger dimension;
+@property (nonatomic) NSUInteger winValue;
+
 
 + (instancetype)gameModelWithDimension:(NSUInteger)dimension
                               winValue:(NSUInteger)value
-                              delegate:(id<F3HGameModelProtocol>)delegate;
+                              delegate:(id<F3HGameModelDelegateProtocol>)delegate;
 
 - (void)reset;
 
@@ -53,3 +43,4 @@ typedef enum {
 - (NSIndexPath *)userHasWon;
 
 @end
+

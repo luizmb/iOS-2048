@@ -32,6 +32,7 @@
 		1A34882518E169AA00D021C3 /* F3HScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A34882418E169AA00D021C3 /* F3HScoreView.m */; };
 		1A34882818E1713E00D021C3 /* F3HControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A34882718E1713E00D021C3 /* F3HControlView.m */; };
 		1A92D000191A016600E35C6C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A92CFFF191A016600E35C6C /* QuartzCore.framework */; };
+		D59436211AC8E0D100CB8B7B /* DVCRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = D59436201AC8E0D100CB8B7B /* DVCRepository.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,10 @@
 		1A34882618E1713E00D021C3 /* F3HControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = F3HControlView.h; path = Views/F3HControlView.h; sourceTree = "<group>"; };
 		1A34882718E1713E00D021C3 /* F3HControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = F3HControlView.m; path = Views/F3HControlView.m; sourceTree = "<group>"; };
 		1A92CFFF191A016600E35C6C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D594361F1AC8E0D100CB8B7B /* DVCRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVCRepository.h; path = Services/DVCRepository.h; sourceTree = "<group>"; };
+		D59436201AC8E0D100CB8B7B /* DVCRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVCRepository.m; path = Services/DVCRepository.m; sourceTree = "<group>"; };
+		D59436221AC8E53C00CB8B7B /* F3HGameModelDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = F3HGameModelDelegateProtocol.h; path = Models/F3HGameModelDelegateProtocol.h; sourceTree = "<group>"; };
+		D59436251AC8E6A800CB8B7B /* F3HGameModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = F3HGameModelProtocol.h; path = Models/F3HGameModelProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +155,7 @@
 				1A3487FF18E1461F00D021C3 /* Models */,
 				1A34880018E1463E00D021C3 /* Views */,
 				D59436191AC894BD00CB8B7B /* Controllers */,
+				D594361B1AC8DFE600CB8B7B /* Services */,
 			);
 			path = NumberTileGame;
 			sourceTree = "<group>";
@@ -190,6 +196,8 @@
 		1A3487FF18E1461F00D021C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D59436221AC8E53C00CB8B7B /* F3HGameModelDelegateProtocol.h */,
+				D59436251AC8E6A800CB8B7B /* F3HGameModelProtocol.h */,
 				1A34880B18E1468400D021C3 /* F3HGameModel.h */,
 				1A34880C18E1468400D021C3 /* F3HGameModel.m */,
 				1A34880118E1465D00D021C3 /* F3HMoveOrder.h */,
@@ -228,6 +236,15 @@
 				1A3487F518DEBB9C00D021C3 /* F3HTileAppearanceProvider.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D594361B1AC8DFE600CB8B7B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D594361F1AC8E0D100CB8B7B /* DVCRepository.h */,
+				D59436201AC8E0D100CB8B7B /* DVCRepository.m */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +349,7 @@
 				1A3487C118DEAD6E00D021C3 /* F3HAppDelegate.m in Sources */,
 				1A34881018E146D800D021C3 /* F3HTileModel.m in Sources */,
 				1A3487BD18DEAD6E00D021C3 /* main.m in Sources */,
+				D59436211AC8E0D100CB8B7B /* DVCRepository.m in Sources */,
 				1A3487F618DEBB9C00D021C3 /* F3HTileAppearanceProvider.m in Sources */,
 				1A34880D18E1468400D021C3 /* F3HGameModel.m in Sources */,
 				1A34881F18E148DB00D021C3 /* F3HTileView.m in Sources */,
