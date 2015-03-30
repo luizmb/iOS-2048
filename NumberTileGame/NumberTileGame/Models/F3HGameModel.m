@@ -57,47 +57,29 @@
 #pragma mark - Insertion API
 
 - (void)insertAtRandomLocationTileWithValue:(NSUInteger)value {
-    // Check if gameboard is full
-    BOOL emptySpotFound = NO;
-    for (NSInteger i=0; i<[self.gameState count]; i++) {
-        if (((F3HTileModel *) self.gameState[i]).empty) {
-            emptySpotFound = YES;
-            break;
-        }
-    }
-    if (!emptySpotFound) {
-        // Board is full, we will never be able to insert a tile
-        return;
-    }
-    // Yes, this could run forever. Given the size of any practical gameboard, I don't think it's likely.
-    NSInteger row = 0;
-    BOOL shouldExit = NO;
-    while (YES) {
-        row = arc4random_uniform((uint32_t)self.dimension);
-        // Check if row has any empty spots in column
-        for (NSInteger i=0; i<self.dimension; i++) {
-            if ([self tileForIndexPath:[NSIndexPath indexPathForRow:row inSection:i]].empty) {
-                shouldExit = YES;
-                break;
+    NSMutableArray *emptySpots = [[NSMutableArray alloc] init];
+    for (NSInteger r = 0; r < self.dimension; r++) {
+        for (NSInteger c = 0; c < self.dimension; c++) {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:r inSection:c];
+            if ([self tileForIndexPath:path].empty) {
+                [emptySpots addObject:path];
             }
         }
-        if (shouldExit) {
-            break;
-        }
     }
-    NSInteger column = 0;
-    shouldExit = NO;
-    while (YES) {
-        column = arc4random_uniform((uint32_t)self.dimension);
-        if ([self tileForIndexPath:[NSIndexPath indexPathForRow:row inSection:column]].empty) {
-            shouldExit = YES;
-            break;
-        }
-        if (shouldExit) {
-            break;
-        }
+    
+    NSUInteger emptySpotsCount = [emptySpots count];
+    NSIndexPath *chosenSpot = nil;
+    
+    if (emptySpotsCount == 0) {
+        return;
+    } else if (emptySpotsCount == 1) {
+        chosenSpot = emptySpots[0];
+    } else {
+        NSUInteger chosenIndex = arc4random_uniform([emptySpots count]);
+        chosenSpot = emptySpots[chosenIndex];
     }
-    [self insertTileWithValue:value atIndexPath:[NSIndexPath indexPathForRow:row inSection:column]];
+
+    [self insertTileWithValue:value atIndexPath:chosenSpot];
 }
 
 // Insert a tile (used by the game to add new tiles to the board)
@@ -109,6 +91,7 @@
     F3HTileModel *tile = [self tileForIndexPath:path];
     tile.empty = NO;
     tile.value = value;
+    self.score += value;
     [self.delegate insertTileAtIndexPath:path value:value];
 }
 
@@ -352,7 +335,7 @@
 
 #pragma mark - Game State API
 
-- (BOOL)userHasLost {
+- (BOOL)gameOver {
     for (NSInteger i=0; i<[self.gameState count]; i++) {
         if (((F3HTileModel *) self.gameState[i]).empty) {
             // Gameboard must be full for the user to lose
@@ -379,7 +362,7 @@
 
 - (NSIndexPath *)userHasWon {
     for (NSInteger i=0; i<[self.gameState count]; i++) {
-        if (((F3HTileModel *) self.gameState[i]).value == self.winValue) {
+        if (((F3HTileModel *) self.gameState[i]).value >= self.winValue) {
             return [NSIndexPath indexPathForRow:(i / self.dimension)
                                       inSection:(i % self.dimension)];
         }
@@ -544,7 +527,6 @@
                 newT.mode = F3HMergeTileModeSingleCombine;
                 newT.originalIndexA = t2.originalIndexA;
                 newT.value = t1.value * 2;
-                self.score += newT.value;
                 [stack2 addObject:newT];
             }
             else {
@@ -554,7 +536,6 @@
                 newT.originalIndexA = t1.originalIndexA;
                 newT.originalIndexB = t2.originalIndexA;
                 newT.value = t1.value * 2;
-                self.score += newT.value;
                 [stack2 addObject:newT];
             }
             ctr += 2;

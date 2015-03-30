@@ -49,7 +49,7 @@ typedef enum {
 - (void)performMoveInDirection:(F3HMoveDirection)direction
                completionBlock:(void(^)(BOOL))completion;
 
-- (BOOL)userHasLost;
+- (BOOL)gameOver;
 - (NSIndexPath *)userHasWon;
 
 @end

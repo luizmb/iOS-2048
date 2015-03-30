@@ -25,13 +25,25 @@
         case 64:
             return [UIColor colorWithRed:246./255. green:94./255. blue:59./255. alpha:1];
         case 128:
+            return [UIColor colorWithRed:240./255. green:160./255. blue:85./255. alpha:1];
         case 256:
+            return [UIColor colorWithRed:240./255. green:150./255. blue:80./255. alpha:1];
         case 512:
+            return [UIColor colorWithRed:242./255. green:120./255. blue:59./255. alpha:1];
         case 1024:
+            return [UIColor colorWithRed:246./255. green:100./255. blue:30./255. alpha:1];
         case 2048:
-            return [UIColor colorWithRed:237./255. green:207./255. blue:114./255. alpha:1];
+            return [UIColor colorWithRed:255./255. green:0./255. blue:0./255. alpha:1];
+        case 4096:
+            return [UIColor colorWithRed:205/255. green:20./255. blue:20./255. alpha:1];
+        case 8192:
+            return [UIColor colorWithRed:175./255. green:20./255. blue:20./255. alpha:1];
+        case 16384:
+            return [UIColor colorWithRed:145./255. green:20./255. blue:20./255. alpha:1];
+        case 32768:
+            return [UIColor colorWithRed:0./255. green:0./255. blue:0./255. alpha:1];
         default:
-            return [UIColor whiteColor];
+            return [UIColor blackColor];
     }
 }
 
@@ -45,8 +57,14 @@
     }
 }
 
-- (UIFont *)fontForNumbers {
-    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
+- (UIFont *)fontForNumbers:(NSUInteger)value {
+    if (value < 1024) {
+        return [UIFont fontWithName:@"HelveticaNeue-Bold" size:22];
+    }
+    if (value < 16384) {
+        return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
+    }
+    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
 }
 
 @end

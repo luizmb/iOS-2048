@@ -107,7 +107,7 @@
     
     // Create gameboard
     CGFloat padding = (self.dimension > 5) ? 3.0 : 6.0;
-    CGFloat cellWidth = floorf((230 - padding*(self.dimension+1))/((float)self.dimension));
+    CGFloat cellWidth = floorf((300 - padding*(self.dimension+1))/((float)self.dimension));
     if (cellWidth < 30) {
         cellWidth = 30;
     }
@@ -155,27 +155,20 @@
     F3HGameModel *model = [F3HGameModel gameModelWithDimension:self.dimension
                                                       winValue:self.threshold
                                                       delegate:self];
-    [model insertAtRandomLocationTileWithValue:2];
-    [model insertAtRandomLocationTileWithValue:2];
     self.model = model;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupGame];
+    [self newGame];
 }
 
 
 #pragma mark - Private API
 
-- (void)followUp {
-    // This is the earliest point the user can win
-    if ([self.model userHasWon]) {
-        [self.delegate gameFinishedWithVictory:YES score:self.model.score];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Victory!" message:@"You won!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
-    else {
+- (void)nextTurn {
+    if (![self.model gameOver]) {
         NSInteger rand = arc4random_uniform(10);
         if (rand == 1) {
             [self.model insertAtRandomLocationTileWithValue:4];
@@ -183,15 +176,22 @@
         else {
             [self.model insertAtRandomLocationTileWithValue:2];
         }
-        // At this point, the user may lose
-        if ([self.model userHasLost]) {
-            [self.delegate gameFinishedWithVictory:NO score:self.model.score];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Defeat!" message:@"You lost..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
     }
 }
 
+-(void)checkGameOver {
+    BOOL victory = [self.model userHasWon] != nil;
+    BOOL gameOver = [self.model gameOver];
+    
+    if (gameOver) {
+        UIAlertView *alert = victory
+        ? [[UIAlertView alloc] initWithTitle:@"Victory!" message:@"You won!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
+        : [[UIAlertView alloc] initWithTitle:@"Defeat!" message:@"You lost..." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+        [self.delegate gameFinishedWithVictory:victory score:self.model.score];
+    }
+}
 
 #pragma mark - Model Protocol
 
@@ -205,6 +205,7 @@
 
 - (void)insertTileAtIndexPath:(NSIndexPath *)path value:(NSUInteger)value {
     [self.gameboard insertTileAtIndexPath:path withValue:value];
+    [self checkGameOver];
 }
 
 - (void)scoreChanged:(NSInteger)newScore {
@@ -216,29 +217,33 @@
 
 - (void)upButtonTapped {
     [self.model performMoveInDirection:F3HMoveDirectionUp completionBlock:^(BOOL changed) {
-        if (changed) [self followUp];
+        if (changed) [self nextTurn];
     }];
 }
 
 - (void)downButtonTapped {
     [self.model performMoveInDirection:F3HMoveDirectionDown completionBlock:^(BOOL changed) {
-        if (changed) [self followUp];
+        if (changed) [self nextTurn];
     }];
 }
 
 - (void)leftButtonTapped {
     [self.model performMoveInDirection:F3HMoveDirectionLeft completionBlock:^(BOOL changed) {
-        if (changed) [self followUp];
+        if (changed) [self nextTurn];
     }];
 }
 
 - (void)rightButtonTapped {
     [self.model performMoveInDirection:F3HMoveDirectionRight completionBlock:^(BOOL changed) {
-        if (changed) [self followUp];
+        if (changed) [self nextTurn];
     }];
 }
 
 - (void)resetButtonTapped {
+    [self newGame];
+}
+
+-(void)newGame {
     [self.gameboard reset];
     [self.model reset];
     [self.model insertAtRandomLocationTileWithValue:2];

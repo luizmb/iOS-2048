@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[F3HGameModel gameOver]:F3HGameModel.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.gameState[i]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[F3HGameModel gameState]:F3HGameModel.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[F3HNumberTileGameViewController followUp]:F3HNumberTileGameViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self.model userHasWon]">
+            </PersistentString>
+            <PersistentString
+               value = "self.winningMessageAlreadyShown">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__51-[F3HNumberTileGameViewController leftButtonTapped]_block_invoke:F3HNumberTileGameViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.model">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

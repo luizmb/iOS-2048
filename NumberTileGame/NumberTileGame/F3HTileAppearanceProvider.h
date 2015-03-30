@@ -12,7 +12,7 @@
 
 - (UIColor *)tileColorForValue:(NSUInteger)value;
 - (UIColor *)numberColorForValue:(NSUInteger)value;
-- (UIFont *)fontForNumbers;
+- (UIFont *)fontForNumbers:(NSUInteger)value;
 
 @end
 

@@ -8,8 +8,8 @@
 
 #import "F3HControlView.h"
 
-#define DEFAULT_FRAME_SMALL     CGRectMake(0, 0, 230, 30)
-#define DEFAULT_FRAME_LARGE     CGRectMake(0, 0, 230, 140)
+#define DEFAULT_FRAME_SMALL     CGRectMake(0, 0, 300, 30)
+#define DEFAULT_FRAME_LARGE     CGRectMake(0, 0, 300, 140)
 
 @interface F3HControlView ()
 @property (nonatomic) BOOL moveButtonsEnabled;

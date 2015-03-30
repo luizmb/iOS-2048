@@ -13,8 +13,6 @@
 		1A3487BB18DEAD6E00D021C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A3487B918DEAD6E00D021C3 /* InfoPlist.strings */; };
 		1A3487BD18DEAD6E00D021C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3487BC18DEAD6E00D021C3 /* main.m */; };
 		1A3487C118DEAD6E00D021C3 /* F3HAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3487C018DEAD6E00D021C3 /* F3HAppDelegate.m */; };
-		1A3487C418DEAD6E00D021C3 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3487C218DEAD6E00D021C3 /* Main_iPhone.storyboard */; };
-		1A3487CA18DEAD6E00D021C3 /* F3HViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3487C918DEAD6E00D021C3 /* F3HViewController.m */; };
 		1A3487CC18DEAD6E00D021C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3487CB18DEAD6E00D021C3 /* Images.xcassets */; };
 		1A3487D318DEAD6E00D021C3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A3487D218DEAD6E00D021C3 /* XCTest.framework */; };
 		1A3487D418DEAD6E00D021C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A3487B018DEAD6E00D021C3 /* Foundation.framework */; };
@@ -57,9 +55,6 @@
 		1A3487BE18DEAD6E00D021C3 /* NumberTileGame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NumberTileGame-Prefix.pch"; sourceTree = "<group>"; };
 		1A3487BF18DEAD6E00D021C3 /* F3HAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = F3HAppDelegate.h; sourceTree = "<group>"; };
 		1A3487C018DEAD6E00D021C3 /* F3HAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = F3HAppDelegate.m; sourceTree = "<group>"; };
-		1A3487C318DEAD6E00D021C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		1A3487C818DEAD6E00D021C3 /* F3HViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = F3HViewController.h; sourceTree = "<group>"; };
-		1A3487C918DEAD6E00D021C3 /* F3HViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = F3HViewController.m; sourceTree = "<group>"; };
 		1A3487CB18DEAD6E00D021C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1A3487D118DEAD6E00D021C3 /* NumberTileGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumberTileGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A3487D218DEAD6E00D021C3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -151,19 +146,10 @@
 		1A3487B618DEAD6E00D021C3 /* NumberTileGame */ = {
 			isa = PBXGroup;
 			children = (
-				1A3487BF18DEAD6E00D021C3 /* F3HAppDelegate.h */,
-				1A3487C018DEAD6E00D021C3 /* F3HAppDelegate.m */,
-				1A3487C218DEAD6E00D021C3 /* Main_iPhone.storyboard */,
-				1A3487C818DEAD6E00D021C3 /* F3HViewController.h */,
-				1A3487C918DEAD6E00D021C3 /* F3HViewController.m */,
-				1A3487CB18DEAD6E00D021C3 /* Images.xcassets */,
 				1A3487B718DEAD6E00D021C3 /* Supporting Files */,
 				1A3487FF18E1461F00D021C3 /* Models */,
 				1A34880018E1463E00D021C3 /* Views */,
-				1A3487F118DEBADA00D021C3 /* F3HNumberTileGameViewController.h */,
-				1A3487F218DEBADA00D021C3 /* F3HNumberTileGameViewController.m */,
-				1A3487F418DEBB9C00D021C3 /* F3HTileAppearanceProvider.h */,
-				1A3487F518DEBB9C00D021C3 /* F3HTileAppearanceProvider.m */,
+				D59436191AC894BD00CB8B7B /* Controllers */,
 			);
 			path = NumberTileGame;
 			sourceTree = "<group>";
@@ -171,6 +157,9 @@
 		1A3487B718DEAD6E00D021C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1A3487CB18DEAD6E00D021C3 /* Images.xcassets */,
+				1A3487BF18DEAD6E00D021C3 /* F3HAppDelegate.h */,
+				1A3487C018DEAD6E00D021C3 /* F3HAppDelegate.m */,
 				1A3487B818DEAD6E00D021C3 /* NumberTileGame-Info.plist */,
 				1A3487B918DEAD6E00D021C3 /* InfoPlist.strings */,
 				1A3487BC18DEAD6E00D021C3 /* main.m */,
@@ -228,6 +217,17 @@
 				1A34882718E1713E00D021C3 /* F3HControlView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		D59436191AC894BD00CB8B7B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A3487F118DEBADA00D021C3 /* F3HNumberTileGameViewController.h */,
+				1A3487F218DEBADA00D021C3 /* F3HNumberTileGameViewController.m */,
+				1A3487F418DEBB9C00D021C3 /* F3HTileAppearanceProvider.h */,
+				1A3487F518DEBB9C00D021C3 /* F3HTileAppearanceProvider.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +310,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3487CC18DEAD6E00D021C3 /* Images.xcassets in Resources */,
-				1A3487C418DEAD6E00D021C3 /* Main_iPhone.storyboard in Resources */,
 				1A3487BB18DEAD6E00D021C3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,7 +334,6 @@
 				1A3487BD18DEAD6E00D021C3 /* main.m in Sources */,
 				1A3487F618DEBB9C00D021C3 /* F3HTileAppearanceProvider.m in Sources */,
 				1A34880D18E1468400D021C3 /* F3HGameModel.m in Sources */,
-				1A3487CA18DEAD6E00D021C3 /* F3HViewController.m in Sources */,
 				1A34881F18E148DB00D021C3 /* F3HTileView.m in Sources */,
 				1A3487F318DEBADA00D021C3 /* F3HNumberTileGameViewController.m in Sources */,
 				1A34881318E1477B00D021C3 /* F3HMergeTile.m in Sources */,
@@ -373,14 +371,6 @@
 				1A3487BA18DEAD6E00D021C3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1A3487C218DEAD6E00D021C3 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1A3487C318DEAD6E00D021C3 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		1A3487DB18DEAD6E00D021C3 /* InfoPlist.strings */ = {
