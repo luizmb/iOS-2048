@@ -17,7 +17,7 @@
                                                                                          winThreshold:2048
                                                                                       backgroundColor:[UIColor whiteColor]
                                                                                           scoreModule:YES
-                                                                                       buttonControls:NO
+                                                                                       buttonControls:YES
                                                                                         swipeControls:YES];
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController = c;

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A3487AC18DEAD6E00D021C3"
-               BuildableName = "NumberTileGame.app"
+               BuildableName = "2048.app"
                BlueprintName = "NumberTileGame"
                ReferencedContainer = "container:NumberTileGame.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A3487AC18DEAD6E00D021C3"
-            BuildableName = "NumberTileGame.app"
+            BuildableName = "2048.app"
             BlueprintName = "NumberTileGame"
             ReferencedContainer = "container:NumberTileGame.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A3487AC18DEAD6E00D021C3"
-            BuildableName = "NumberTileGame.app"
+            BuildableName = "2048.app"
             BlueprintName = "NumberTileGame"
             ReferencedContainer = "container:NumberTileGame.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A3487AC18DEAD6E00D021C3"
-            BuildableName = "NumberTileGame.app"
+            BuildableName = "2048.app"
             BlueprintName = "NumberTileGame"
             ReferencedContainer = "container:NumberTileGame.xcodeproj">
          </BuildableReference>

@@ -3,13 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[DVCRepository init]:DVCRepository.m">
+         contextName = "__51-[F3HNumberTileGameViewController leftButtonTapped]_block_invoke:F3HNumberTileGameViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.currentBoard[3]">
+               value = "self.model">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[F3HNumberTileGameViewController viewDidLoad]:F3HNumberTileGameViewController.m">
+         <PersistentStrings>
             <PersistentString
-               value = "self.currentBoard">
+               value = "self.persistenceService.currentBoard">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -25,21 +30,24 @@
          contextName = "-[F3HGameModel gameState]:F3HGameModel.m">
       </ContextState>
       <ContextState
-         contextName = "-[F3HNumberTileGameViewController followUp]:F3HNumberTileGameViewController.m">
+         contextName = "-[DVCRepository init]:DVCRepository.m">
          <PersistentStrings>
             <PersistentString
-               value = "[self.model userHasWon]">
+               value = "self.currentBoard[3]">
             </PersistentString>
             <PersistentString
-               value = "self.winningMessageAlreadyShown">
+               value = "self.currentBoard">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__51-[F3HNumberTileGameViewController leftButtonTapped]_block_invoke:F3HNumberTileGameViewController.m">
+         contextName = "-[F3HNumberTileGameViewController followUp]:F3HNumberTileGameViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.model">
+               value = "self.winningMessageAlreadyShown">
+            </PersistentString>
+            <PersistentString
+               value = "[self.model userHasWon]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

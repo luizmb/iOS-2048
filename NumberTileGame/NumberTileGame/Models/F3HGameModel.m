@@ -70,7 +70,7 @@
     } else if (emptySpotsCount == 1) {
         chosenSpot = emptySpots[0];
     } else {
-        NSUInteger chosenIndex = arc4random_uniform([emptySpots count]);
+        NSUInteger chosenIndex = arc4random_uniform((u_int32_t) [emptySpots count]);
         chosenSpot = emptySpots[chosenIndex];
     }
 

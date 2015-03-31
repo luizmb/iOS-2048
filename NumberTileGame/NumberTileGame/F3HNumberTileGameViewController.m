@@ -28,7 +28,7 @@
 
 @property (nonatomic) NSUInteger dimension;
 @property (nonatomic) NSUInteger threshold;
-@property (nonatomic, strong) id<F3HGameModelDelegateProtocol> persistenceService;
+@property (nonatomic, strong) DVCRepository *persistenceService;
 @end
 
 @implementation F3HNumberTileGameViewController
@@ -48,7 +48,6 @@
     if (swipeControlsEnabled) {
         [c setupSwipeControls];
     }
-    c.persistenceService = [[DVCRepository alloc] init];
     return c;
 }
 
@@ -87,6 +86,10 @@
     
     CGFloat totalHeight = 0;
     
+    if (self.persistenceService.currentBoard != nil && [self.persistenceService.currentBoard count]) {
+        self.dimension = sqrt([self.persistenceService.currentBoard count]);
+    }
+    
     // Set up score view
     if (self.useScoreView) {
         scoreView = [F3HScoreView scoreViewWithCornerRadius:6
@@ -101,7 +104,7 @@
     if (self.useControlView) {
         controlView = [F3HControlView controlViewWithCornerRadius:6
                                                   backgroundColor:[UIColor blackColor]
-                                                  movementButtons:YES
+                                                  movementButtons:NO
                                                        exitButton:NO
                                                          delegate:self];
         totalHeight += (ELEMENT_SPACING + controlView.bounds.size.height);
@@ -161,12 +164,21 @@
     self.model = model;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self setupGame];
-    [self newGame];
+-(DVCRepository *)persistenceService {
+    if (!_persistenceService) _persistenceService =[[DVCRepository alloc] init];
+    return _persistenceService;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self setupGame];
+    if (self.persistenceService.currentBoard != nil && [self.persistenceService.currentBoard count]) {
+        [self loadGame];
+    } else {
+        [self newGame];
+    }
+}
 
 #pragma mark - Private API
 
@@ -255,6 +267,29 @@
     [self.model reset];
     [self nextTurn];
     [self nextTurn];
+}
+
+-(void)loadGame {
+    [self.gameboard reset];
+    [self.model reset];
+    
+    NSArray *oldBoard = [self.persistenceService.currentBoard copy];
+    
+    for (int i = 0; i < [oldBoard count]; i++) {
+        
+        int value = ((NSNumber *) oldBoard[i]).intValue;
+        int r = i / self.dimension;
+        int c = i - (int)(r * self.dimension);
+        //         c0   c1   c2   c3
+        //    r0    0    1    2    3
+        //    r1    4    5    6    7
+        //    r2    8    9   10   11
+        //    r3   12   13   14   15
+        
+        if (value > 0) {
+            [self.model insertTileWithValue:value atIndexPath: [NSIndexPath indexPathForRow:r inSection:c]];
+        }
+    }
 }
 
 - (void)exitButtonTapped {
